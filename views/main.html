@@ -1,0 +1,31 @@
+<div id="gameContainer" 
+  ng-controller="2048Controller as ctrl"
+  ng-keydown="ctrl.game.handleDirection($event)"
+  tabindex="1"
+  >
+  <h1>Say Goodbye to your free time!</h1>
+  <div class="scoresContainer"
+  >
+    <div class="currScore">Current Score: {{ctrl.game.score}}</div>
+    <div class="highSchore">High Score: {{ctrl.game.highScore}}</div>
+    <button 
+      ng-click="ctrl.game.newGame()">new game</button>
+  </div>
+
+  <div class="gameContainer" >
+    
+    <table class="boardContainer">
+      <tr 
+        ng-repeat="row in ctrl.game.board.rows">
+        <td 
+          ng-repeat="spot in row.spots">
+          <div 
+            ng-if='spot.value' class="tile val-{{spot.value}}">
+            {{spot.value}}
+          </div>
+          
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

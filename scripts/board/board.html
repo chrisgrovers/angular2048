@@ -1,0 +1,10 @@
+<table class="boardContainer">
+    <tr ng-repeat="row in ctrl.game.board.rows">
+      <td ng-repeat="spot in row.spots">
+        <div ng-if='spot.value' class="tile val-{{spot.value}}">
+          {{spot.value}}
+        </div>
+        
+      </td>
+    </tr>
+  </table>
