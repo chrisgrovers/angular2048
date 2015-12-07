@@ -54,6 +54,10 @@ tr {
   width: 500px;
 }
 
+[tabindex] {
+   outline: none !important;
+}
+
 .tile {
   border-radius: 3px;
   text-align: center;
