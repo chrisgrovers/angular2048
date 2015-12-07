@@ -63,8 +63,6 @@ board.service('BoardService', function() {
         if (holder.value !== undefined && holder.value !== temp.value) {
           break;
         } else if (holder.value === temp.value) {
-          // console.log('board.add', board.add);
-          console.log('yoyoyo')
           temp.value = temp.value * 2;
           board.add += temp.value;
           temp[xOry] = holder[xOry]
