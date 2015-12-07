@@ -67,6 +67,9 @@ angular.module('gameModule', ['board'])
       board.move(direction);
       console.log('direction!')
     }
+    console.log('board.add is', board.add);
+
+    game.updateScore(board.add);
   }
 
   game.newGame = function() {
@@ -76,9 +79,10 @@ angular.module('gameModule', ['board'])
   }
 
   game.updateScore = function(newScore) {
-
-  }
-  game.movesAvailable = function() {
+    game.score += newScore;
+    if (game.score > game.highScore) {
+      game.highScore = game.score;
+    }
 
   }
 
