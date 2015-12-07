@@ -4,6 +4,8 @@ board.service('BoardService', function() {
   var board = {};
   board.rows = [];
   board.boardSize = 4;
+  board.add = 0;
+
 
   board.addTile = function() {
     // should generate a number (2 or 4) in random spot in board
@@ -61,7 +63,10 @@ board.service('BoardService', function() {
         if (holder.value !== undefined && holder.value !== temp.value) {
           break;
         } else if (holder.value === temp.value) {
+          // console.log('board.add', board.add);
+          console.log('yoyoyo')
           temp.value = temp.value * 2;
+          board.add += temp.value;
           temp[xOry] = holder[xOry]
           break;
         }
@@ -98,6 +103,7 @@ board.service('BoardService', function() {
   }
 
   board.move = function(direction) {
+    board.add = 0;
     var tiles = this.findTiles(direction.traverse);
     var okayToAdd = false;
 
@@ -107,7 +113,6 @@ board.service('BoardService', function() {
         okayToAdd = true;
       }
     }
-    console.log('okayToAdd is...');
     if (okayToAdd) {
       this.addTile()
     }
