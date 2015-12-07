@@ -45,6 +45,7 @@ board.service('BoardService', function() {
       holder.value = board.rows[tile.x].spots[tile.y].value;
       holder.x = board.rows[tile.x].spots[tile.y].x;
       holder.y = board.rows[tile.x].spots[tile.y].y;
+      holder.canCombine = board.rows[tile.x].spots[tile.y].canCombine;
       return holder;
     }
 
@@ -53,17 +54,20 @@ board.service('BoardService', function() {
     board.rows[temp.x].spots[temp.y].value = undefined;
 
     while (board.rows[temp.x].spots[temp.y].value !== null) {
+      // nextSpot is not the actual tile. It is only modifiying the value of xOry to be accessed by holder
       var nextSpot = cloneTile(temp);
       nextSpot[xOry] = operator[plusOrMinus](nextSpot[xOry]);
       
       if (nextSpot[xOry] >= board.boardSize || nextSpot[xOry] < 0) {
         break;
       } else {
+        // holder contains the actual attributes of the next spot on the board
         var holder = cloneTile(nextSpot);
-        if (holder.value !== undefined && holder.value !== temp.value) {
+        if (holder.value !== undefined && holder.value !== temp.value || (holder.value === temp.value && !holder.canCombine)) {
           break;
         } else if (holder.value === temp.value) {
           temp.value = temp.value * 2;
+          temp.canCombine = false;
           board.add += temp.value;
           temp[xOry] = holder[xOry]
           break;
@@ -73,6 +77,8 @@ board.service('BoardService', function() {
       temp[xOry] = nextSpot[xOry];
     }
     board.rows[temp.x].spots[temp.y].value = temp.value;
+    board.rows[temp.x].spots[temp.y].canCombine = temp.canCombine;
+
     if (spot.x === temp.x && spot.y === temp.y) {
       return false;
     } else {
@@ -94,6 +100,7 @@ board.service('BoardService', function() {
     var tiles = [];
     cb(function(elem) {
       if (elem.value !== undefined) {
+        elem.canCombine = true;
         tiles.push(elem);
       }
     })
@@ -134,6 +141,9 @@ board.service('BoardService', function() {
       gridCell.value = null;
       gridCell.x = i;
       gridCell.y = j;
+      // TODO: when tiles look like [null, 4, 2, 2] and are combining to the right, result will be [null, null, null, 8]
+      // canCombine value will set to true for all tiles when starting to move, and will be set to false when a new tile is combined to fix this issue
+      gridCell.canCombine = true;
       if (i === 2) {
         gridCell.value = 2;
       }
