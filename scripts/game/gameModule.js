@@ -1,5 +1,5 @@
-angular.module('gameModule', ['board'])
-.factory('gameFactory', function(BoardService) {
+angular.module('gameModule', ['board', 'ngCookies'])
+.factory('gameFactory', function(BoardService, $cookies) {
   var game = {};
   var board = BoardService;
   game.score = 0;
@@ -65,20 +65,25 @@ angular.module('gameModule', ['board'])
     if (direction) {
       e.preventDefault();
       board.move(direction);
-      console.log('direction!')
     }
+
+    game.updateScore(board.add);
   }
 
-  game.newGame = function() {
+  game.newGame = function(cookies) {
     this.score = 0;
     board.startNewGame();
+    this.highScore = cookies || 0;
 
   }
 
   game.updateScore = function(newScore) {
-
-  }
-  game.movesAvailable = function() {
+    game.score += newScore;
+    if (game.score > game.highScore) {
+      game.highScore = game.score;
+      console.log('$cookies', $cookies.put)
+      $cookies.put('cookies', game.highScore);
+    }
 
   }
 

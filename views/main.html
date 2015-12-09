@@ -1,4 +1,4 @@
-<div id="gameContainer" 
+<div class="appContainer" 
   ng-controller="2048Controller as ctrl"
   ng-keydown="ctrl.game.handleDirection($event)"
   tabindex="1"
@@ -13,19 +13,15 @@
   </div>
 
   <div class="gameContainer" >
-    
-    <table class="boardContainer">
-      <tr 
-        ng-repeat="row in ctrl.game.board.rows">
-        <td 
-          ng-repeat="spot in row.spots">
-          <div 
-            ng-if='spot.value' class="tile val-{{spot.value}}">
-            {{spot.value}}
-          </div>
-          
-        </td>
-      </tr>
-    </table>
+  <div board></div>
+  <div class="gameInfo">
+
+    <div class="rules">
+    <h2>How To Play</h2>
+      Use your arrow keys to move the tiles. When two tiles with the same number touch, they merge into one!
+      <h2>Objective</h2>
+      Release the highly coveted '2048' tile back into its natural habitat (the board)!
+    </div>
+  </div>    
   </div>
 </div>
