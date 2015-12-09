@@ -8,7 +8,6 @@ app.controller('2048Controller', function(gameFactory, $cookies) {
   this.cookies = $cookies.get('cookies') || {
 
   };
-  console.log('cookies are', this.cookies)
 
 
   this.newGame = function(cookies) {

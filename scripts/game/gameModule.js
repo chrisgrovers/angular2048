@@ -81,7 +81,6 @@ angular.module('gameModule', ['board', 'ngCookies'])
     game.score += newScore;
     if (game.score > game.highScore) {
       game.highScore = game.score;
-      console.log('$cookies', $cookies.put)
       $cookies.put('cookies', game.highScore);
     }
 
