@@ -3,16 +3,11 @@ var app = angular.module('2048App', [
   'board',
   'gameModule',])
 
-app.controller('2048Controller', function(gameFactory, $cookies) {
+app.controller('2048Controller', function(gameFactory) {
   this.game = gameFactory;
-  this.cookies = $cookies.get('cookies') || {
 
-  };
-
-
-  this.newGame = function(cookies) {
-    console.log('cookies are', cookies)
-    this.game.newGame(cookies);
+  this.newGame = function() {
+    this.game.newGame();
   }
 
   this.startGame = function() {
@@ -20,7 +15,7 @@ app.controller('2048Controller', function(gameFactory, $cookies) {
     console.log('starting new game');
   }
 
-  this.game.newGame(this.cookies);
+  this.game.newGame();
 
 
 })
