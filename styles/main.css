@@ -125,3 +125,9 @@ box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0),
   box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.55556), inset 0 0 0 1px rgba(255, 255, 255, 0.33333);
   font-size: 35px;
 }
+.val-4096 {
+  color: #2848A2;
+  background: #E2B20C;
+  box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.55556), inset 0 0 0 1px rgba(255, 255, 255, 0.33333);
+  font-size: 35px;
+}
