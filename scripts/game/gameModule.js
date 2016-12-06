@@ -19,7 +19,7 @@ angular.module('gameModule', ['board', 'ngCookies'])
       }
 
     },
-    'ArroRight': {
+    'ArrowRight': {
       forward: true,
       axis: 'y',
       plusOrMinus: '+',
