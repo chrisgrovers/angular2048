@@ -6,7 +6,7 @@ angular.module('gameModule', ['board', 'ngCookies'])
   game.highScore = 0;
   game.board = BoardService;
   game.directions = {
-    'Up': {
+    'ArrowUp': {
       forward: true,
       axis: 'x',
       plusOrMinus: '-',
@@ -19,7 +19,7 @@ angular.module('gameModule', ['board', 'ngCookies'])
       }
 
     },
-    'Right': {
+    'ArroRight': {
       forward: true,
       axis: 'y',
       plusOrMinus: '+',
@@ -32,7 +32,7 @@ angular.module('gameModule', ['board', 'ngCookies'])
       }
 
     },
-    'Left': {
+    'ArrowLeft': {
       forward: false,
       axis: 'y',
       plusOrMinus: '-',
@@ -45,7 +45,7 @@ angular.module('gameModule', ['board', 'ngCookies'])
       }
 
     },
-    'Down': {
+    'ArrowDown': {
       forward: false,
       axis: 'x',
       plusOrMinus: '+',
@@ -61,7 +61,7 @@ angular.module('gameModule', ['board', 'ngCookies'])
   }
 
   game.handleDirection = function(e) {
-    var direction = game.directions[e.keyIdentifier];
+    var direction = game.directions[e.code];
     if (direction) {
       e.preventDefault();
       board.move(direction);
