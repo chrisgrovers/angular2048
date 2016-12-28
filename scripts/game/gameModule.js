@@ -71,11 +71,11 @@ angular.module('gameModule', ['board', 'ngCookies'])
   }
 
   game.newGame = function() {
-    var cookies = $cookies.get('cookies');
-    console.log('cookies are', cookies)
+    // var cookies = $cookies.get('cookies');
+    // console.log('cookies are', cookies)
     this.score = 0;
     board.startNewGame();
-    this.highScore = cookies || 0;
+    this.highScore = 0;
   }
 
   game.updateScore = function(newScore) {
